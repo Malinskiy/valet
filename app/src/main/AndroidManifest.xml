@@ -6,7 +6,18 @@
 
     <uses-permission android:name="android.permission.SET_ACTIVITY_WATCHER"/>
 
-    <application android:allowBackup="false">
+    <application
+            android:allowBackup="false"
+            android:theme="@style/Theme.AppCompat">
+
+        <activity android:name=".view.AboutActivity"
+                android:label="@string/package_blacklist">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="de.robv.android.xposed.category.MODULE_SETTINGS"/>
+            </intent-filter>
+        </activity>
+
         <meta-data
                 android:name="xposedmodule"
                 android:value="true"/>

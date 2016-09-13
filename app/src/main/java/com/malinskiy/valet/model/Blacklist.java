@@ -2,27 +2,22 @@ package com.malinskiy.valet.model;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Blacklist {
 
-    private Set<String> packages;
+    private Set<Entry> packages;
 
-    public Blacklist() {
-        this(new HashSet<>(Arrays.asList(
-                SAMSUNG
-                                        )));
-    }
-
-    private Blacklist(Set<String> packages) {
+    public Blacklist(Set<Entry> packages) {
         this.packages = packages;
     }
 
-    public boolean contains(String entry) {
-        return packages.contains(entry);
+    public boolean contains(String packageName) {
+        return packages.contains(new Entry(packageName, null));
     }
 
-    public static String[] SAMSUNG = new String[] {
-            "com.wssyncmldm"
-    };
+    public List<Entry> toList() {
+        return Arrays.asList(packages.toArray(new Entry[]{}));
+    }
 }

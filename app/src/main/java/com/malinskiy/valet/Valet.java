@@ -1,5 +1,6 @@
 package com.malinskiy.valet;
 
+import com.malinskiy.valet.data.impl.EmbeddedBlacklistRepository;
 import com.malinskiy.valet.model.Blacklist;
 
 import android.util.Log;
@@ -16,7 +17,8 @@ public class Valet implements IXposedHookLoadPackage {
 
         //TODO: double check that com.android.providers.settings is found on most Android devices
         if ("com.android.providers.settings".equals(packageParam.packageName)) {
-            new ValetActivityController(new Blacklist()).install();
+            Blacklist blacklist = new EmbeddedBlacklistRepository().load();
+            new ValetActivityController(blacklist).install();
         }
     }
 }
