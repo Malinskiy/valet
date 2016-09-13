@@ -72,8 +72,6 @@ public class ValetActivityController extends IActivityController.Stub {
             Object activityManagerInstance = getDefault.invoke(null);
             Method setMethod = activityManagerInstance.getClass().getMethod("setActivityController", IActivityController.class);
             setMethod.invoke(activityManagerInstance, activityController);
-
-            XposedBridge.invokeOriginalMethod(setMethod, activityManagerInstance, new Object[] {activityController});
             Log.d(TAG, "Installed custom IActivityController");
         } catch (Throwable e) {
             Log.e(TAG, "Failed to install custom IActivityController", e);
